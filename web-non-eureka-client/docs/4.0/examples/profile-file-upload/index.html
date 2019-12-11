@@ -1,0 +1,96 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>POC for Storing of Files in Dbase</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+  </head>
+  
+  <body class="text-center" >
+      
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item ">
+                <a class="nav-link" href="..\create-user\index.html">Create User <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="..\list-users\index.html">List Users</a>
+                </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="..\profile-file-upload\index.html">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="..\scheme-file-upload\index.html">Apply For Scheme</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="..\list-apps\index.html">List of Applications</a>
+                </li>
+            </ul>
+          </div>
+        </nav>
+
+      <form>
+          <h1 class="h3 mb-3 font-weight-normal">Profile :: Manage Files </h1>
+          <div class="form-row align-items-center">
+              <div class="col-auto">
+                <label for="id" class="sr-only">ID of User</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" id="id" class="form-control" placeholder="Unique Identifier of User" autofocus> 
+              </div>
+              <div class="col-auto">
+                <a href="#" id="search" class="btn btn-warning">Search</a>
+              </div>
+          </div>
+          <hr>
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+            <label for="poiFile" ><b> PoI File</b></label>
+            </div>
+            <div class="col-auto">
+              <input type="file" class="form-control-file" id="poiFile" data-base="" data-refid="" >
+            </div>
+          <div class="col-auto">
+            <input type="button" class="btn btn-success" id=downloadPoiFile value="Download">
+            <input type="button" class="btn btn-danger" id=deletePoiFile value="Delete">
+          </div>
+        </div>
+        <hr>
+          <div class="form-row align-items-center">
+              <div class="col-auto">
+              <label for="poaFile" ><b>PoA File</b></label>
+              </div>
+            <div class="col-auto">
+              
+              <input type="file" class="form-control-file" id="poaFile" data-base="" data-refid="" >
+          </div>
+          <div class="col-auto">
+            <input type="button" class="btn btn-success" id=downloadPoaFile value="Download">
+            <input type="button" class="btn btn-danger" id=deletePoaFile value="Delete">
+          </div>
+        </div>
+        <hr>
+          <div class="form-row align-items-center">
+            <div class="col-auto"> 
+              <a class="btn btn-primary " id="save" style="color:white">Save</a>
+            </div>
+          </div>
+    </form>
+    <script src="../const.js"></script>
+    <script src="./events.js"></script>
+  </body>
+</html>

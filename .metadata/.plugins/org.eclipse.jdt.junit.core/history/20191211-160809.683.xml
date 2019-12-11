@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ms-app-repo" project="ms-app-repo" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="org.sj.msapprepo.AppRepoControllerTest" time="0.49">
+    <testcase name="testAddAppWhenNotUnique" classname="org.sj.msapprepo.AppRepoControllerTest" time="0.198"/>
+    <testcase name="testAddAppWhenUnique" classname="org.sj.msapprepo.AppRepoControllerTest" time="0.263"/>
+    <testcase name="testGetAppWhenFound" classname="org.sj.msapprepo.AppRepoControllerTest" time="0.029"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ms-service-registry-server
+eureka:
+  server:
+    wait-time-in-ms-when-sync-empty:  0
+  instance:
+    preferIpAddress: true
+#  client:
+#    register-with-eureka: false
+#    fetch-registry: false
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+# -Dspring.active.profile=server1 -Dspring.cloud.config.uri=http://localhost:9999/
+# -Dspring.active.profile=server2 -Dspring.cloud.config.uri=http://localhost:9999/

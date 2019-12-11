@@ -1,0 +1,106 @@
+package org.sj.msapprepo;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import org.mockito.AdditionalAnswers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.UUID;
+
+import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
+import org.mockito.AdditionalAnswers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.server.ResponseStatusException;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
+public class MsAppRepoApplicationTests {
+
+	@InjectMocks
+	Controller appController;
+	
+	@Mock
+	AppRepoRepository appRepoRepository;
+	
+	@Test
+	public void testAddAppWhenUnique()
+	{
+		//Setting up mock
+		MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        
+        AppRepo app1 = new AppRepo();
+        app1.setUserID(UUID.randomUUID());
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Date date = Date.from( localDateTime.atZone( ZoneId.systemDefault()).toInstant());
+        app1.setUpdatedAt(date);
+        app1.setSchemeID(1234);
+        app1.setPoiFileID("TestPoiFileID");
+        app1.setPoaFileID("TestPoaFileID");
+        app1.setCreatedAt(date);
+        AppRepoIdentity appId = new AppRepoIdentity();
+        appId.setUserID(app1.getUserID());
+        appId.setSchemeID(app1.getSchemeID());
+         
+        when(appRepoRepository.existsById(any(AppRepoIdentity.class))).thenReturn(true);
+        when(appRepoRepository.save(any(AppRepo.class))).then(AdditionalAnswers.returnsFirstArg());
+        
+        //Call test function
+       AppRepo response = appController.addApp(app1);
+       
+       //Test
+       assertThat(response.equals(app1));        
+	}
+	
+	@Test
+	public void testAddAppWhenNotUnique()
+	{
+		//Setting up mock
+		MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        
+        AppRepo app1 = new AppRepo();
+        app1.setUserID(UUID.randomUUID());
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Date date = Date.from( localDateTime.atZone( ZoneId.systemDefault()).toInstant());
+        app1.setUpdatedAt(date);
+        app1.setSchemeID(1234);
+        app1.setPoiFileID("TestPoiFileID");
+        app1.setPoaFileID("TestPoaFileID");
+        app1.setCreatedAt(date);
+        AppRepoIdentity appId = new AppRepoIdentity();
+        appId.setUserID(app1.getUserID());
+        appId.setSchemeID(app1.getSchemeID());
+         
+        when(appRepoRepository.existsById(any(AppRepoIdentity.class))).thenReturn(false);
+        when(appRepoRepository.save(any(AppRepo.class))).then(AdditionalAnswers.returnsFirstArg());
+        
+        //Call test function
+        try {
+       appController.addApp(app1);
+       
+       fail("Exception not thrown when AppRepoIdentity is not unique");
+        }
+        catch(ResponseStatusException e) {
+        	//Exception thrown as expected
+        }
+	}
+}
+

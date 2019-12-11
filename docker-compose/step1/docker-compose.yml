@@ -1,0 +1,42 @@
+version: '3'
+services:
+  ms-service-registry-server-1:
+    image: "org.sj/ms-service-registry-server"
+    container_name: ms-service-registry-server-1
+    command: -Dspring.profiles.active=server1 -Deureka.client.serviceUrl.defaultZone=http://ms-service-registry-server-2:8762/eureka org.sj.msserviceregistryserver.MsServiceRegistryServerApplication
+    ports:
+           - 8761:8761
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: $FLUENTD_HOST
+        tag: ms-service-registry-server
+  ms-service-registry-server-2:  
+    image: "org.sj/ms-service-registry-server"
+    container_name: ms-service-registry-server-2
+    command: -Dspring.profiles.active=server2 -Deureka.client.serviceUrl.defaultZone=http://ms-service-registry-server-1:8761/eureka org.sj.msserviceregistryserver.MsServiceRegistryServerApplication
+    ports:
+           - 8762:8762
+    logging:
+      driver: "fluentd"
+      options: 
+        fluentd-address: $FLUENTD_HOST
+        tag: ms-service-registry-server
+  ms-config-server:
+    image: "org.sj/ms-config-server"
+    container_name: ms-config-server
+    command: -Dserver.port=9999 -Dspring.profiles.active=native -Dspring.cloud.config.server.native.searchLocations=file:///\_fsconfig -Deureka.client.serviceUrl.defaultZone=http://ms-service-registry-server-1:8761/eureka/  org.sj.msconfigserver.MsConfigServerApplication
+    volumes:
+      - e:/_fsconfig/:/_fsconfig
+    ports:
+           - 9999:9999  
+    logging:
+      driver: "fluentd"
+      options: 
+        fluentd-address: $FLUENTD_HOST
+        tag: ms-config-server
+networks:
+  default:
+    external:
+      name: org-sj-ms
+#docker network create -d bridge org-sj-ms      

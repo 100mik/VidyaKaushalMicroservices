@@ -1,0 +1,63 @@
+version: '3'
+services:
+  ms-api-gateway:
+    image: "org.sj/ms-api-gateway"
+    container_name: ms-api-gateway
+    command: -Dserver.port=9190 -Deureka.client.serviceUrl.defaultZone=$SERVICE_REGISTRY_URL  -Dspring.profiles.active=$PROFILE org.sj.msapigateway.MsApiGatewayApplication
+    ports:
+           - 9190:9190
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: $FLUENTD_HOST
+        tag: ms-api-gateway
+
+  ms-user-repo:
+    image: "org.sj/ms-user-repo"
+    container_name: ms-user-repo
+    command: -Dserver.port=8180 -Deureka.client.serviceUrl.defaultZone=$SERVICE_REGISTRY_URL -Dspring.profiles.active=$PROFILE -Dspring.datasource.url=$DB_URL -Dspring.datasource.username=$DB_USER -Dspring.datasource.password=$DB_PASS org.sj.msuserrepo.MsUserRepoApplication
+    ports:
+           - 8180:8180      
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: $FLUENTD_HOST
+        tag: ms-user-repo
+  ms-file-mgmnt:
+    image: "org.sj/ms-file-mgmt"
+    container_name: ms-file-mgmt
+    command: -Dserver.port=8181 -Deureka.client.serviceUrl.defaultZone=$SERVICE_REGISTRY_URL -Dspring.profiles.active=$PROFILE -Dspring.datasource.url=$DB_URL -Dspring.datasource.username=$DB_USER -Dspring.datasource.password=$DB_PASS org.sj.msfilemgmnt.MsFileMgmntApplication
+    ports:
+           - 8181:8181      
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: $FLUENTD_HOST
+        tag: ms-file-mgmnt
+  ms-app-repo:
+    image: "org.sj/ms-app-repo"
+    container_name: ms-app-repo
+    command: -Dserver.port=7171 -Deureka.client.serviceUrl.defaultZone=$SERVICE_REGISTRY_URL -Dspring.profiles.active=$PROFILE -Dspring.datasource.url=$DB_URL -Dspring.datasource.username=$DB_USER -Dspring.datasource.password=$DB_PASS org.sj.msapprepo.MsAppRepoApplication
+    ports:
+           - 7171:7171      
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: $FLUENTD_HOST
+        tag: ms-app-repo
+  web-eureka-client:
+    image: "org.sj/web-eureka-client"
+    container_name: web-eureka-client
+    command: -Dserver.port=3333 -Deureka.client.serviceUrl.defaultZone=$SERVICE_REGISTRY_URL -Dspring.profiles.active=$PROFILE org.sj.webeurekaclient.WebEurekaClientApplication
+    ports:
+           - 80:3333      
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: $FLUENTD_HOST
+        tag: web-eureka-client
+networks:
+  default:
+    external:
+      name: org-sj-ms
+#docker network create -d bridge org-sj-ms           
