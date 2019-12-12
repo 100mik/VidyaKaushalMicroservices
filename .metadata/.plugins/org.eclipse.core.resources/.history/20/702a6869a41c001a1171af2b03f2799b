@@ -1,0 +1,72 @@
+package org.sj.msfilemgmnt;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import java.util.UUID;
+
+import javax.xml.bind.DatatypeConverter;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.AdditionalAnswers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
+import junit.framework.TestCase;
+import org.sj.msfilemgmnt.model.FileStore;
+import org.sj.msfilemgmnt.FileStoreController;
+import org.sj.msfilemgmnt.FileStoreRepo;
+import org.sj.msfilemgmnt.ResourceNotFoundException;
+
+
+@RunWith(MockitoJUnitRunner.class)
+public class FileStoreControllerTest extends TestCase{
+	
+	
+	@InjectMocks
+	FileStoreController fileStoreController;
+	
+	@Mock
+	FileStoreRepo fileStoreRepo;
+	
+	
+	
+	public FileStoreControllerTest()
+	{
+		MockitoAnnotations.initMocks(this);
+	}
+	
+	@Test
+	public void testAddFile()
+	{
+		//Set up mock data
+		LocalDateTime localDateTime = LocalDateTime.now();
+        Date date = Date.from( localDateTime.atZone( ZoneId.systemDefault()).toInstant());
+		FileStore file = new FileStore();
+		file.setId(UUID.randomUUID());
+		file.setRemoved(false);
+		file.setCreatedAt(date);
+		String myFile = "My File Content";
+		byte[] fileContent = DatatypeConverter.parseBase64Binary(myFile);
+		file.setFileContent(fileContent);
+		file.setFileType(".txt");
+		
+		//Mock repository methods
+		when(fileStoreRepo.save(any(FileStore.class))).thenAnswer(AdditionalAnswers.returnsFirstArg());
+		
+		//Call test function
+		UUID returnId = fileStoreController.storeFile(file);
+		
+		//Assertions
+		assertThat(returnId.equals(file.getId()));
+	}
+	
+}

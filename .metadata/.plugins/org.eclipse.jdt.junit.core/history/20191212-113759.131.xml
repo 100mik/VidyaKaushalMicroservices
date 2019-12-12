@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="FileStoreControllerTest" project="ms-file-mgmnt" tests="2" started="2" failures="0" errors="1" ignored="0">
+  <testsuite name="org.sj.msfilemgmnt.FileStoreControllerTest" time="0.246">
+    <testcase name="testStoreFile" classname="org.sj.msfilemgmnt.FileStoreControllerTest" time="0.213"/>
+    <testcase name="testGetFileWhenFound" classname="org.sj.msfilemgmnt.FileStoreControllerTest" time="0.033"/>
+  </testsuite>
+  <testsuite name="Unrooted Tests" displayname="Unrooted Tests">
+    <testcase name="unnecessary Mockito stubbings" classname="org.sj.msfilemgmnt.FileStoreControllerTest" displayname="unnecessary Mockito stubbings(org.sj.msfilemgmnt.FileStoreControllerTest)">
+      <error>org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+Unnecessary stubbings detected in test class: FileStoreControllerTest
+Clean &amp; maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -&gt; at org.sj.msfilemgmnt.FileStoreControllerTest.testGetFileWhenFound(FileStoreControllerTest.java:98)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.&#13;
+	at org.mockito.internal.runners.StrictRunner.run(StrictRunner.java:49)&#13;
+	at org.mockito.junit.MockitoJUnitRunner.run(MockitoJUnitRunner.java:163)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:89)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:41)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:541)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:763)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:463)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:209)&#13;
+&#13;
+</error>
+    </testcase>
+  </testsuite>
+</testrun>

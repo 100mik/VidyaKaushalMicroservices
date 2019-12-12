@@ -1,0 +1,5 @@
+package org.sj.msfilemgmnt;
+
+public class FileStoreControllerTest {
+
+}

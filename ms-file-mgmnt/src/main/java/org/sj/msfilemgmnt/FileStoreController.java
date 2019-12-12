@@ -63,6 +63,7 @@ public class FileStoreController {
 		public HttpStatus updateFile(@PathVariable (value = "id") UUID fileId) {
 			FileStore oldFileObj=fileStoreRepoObj.findById(fileId).orElseThrow(() -> new ResourceNotFoundException("FileStore", "id", fileId));
 			oldFileObj.setRemoved(true);
+			fileStoreRepoObj.save(oldFileObj);
 			return HttpStatus.OK;
 		}
 

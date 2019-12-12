@@ -17,9 +17,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.server.ResponseStatusException;
 import junit.framework.TestCase;
 import org.sj.msapprepo.Controller;
@@ -46,10 +43,7 @@ public class AppRepoControllerTest extends TestCase{
 	@Test
 	public void testAddAppWhenUnique()
 	{
-		//Setting up mock
-		MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-        
+		//Setting up mock        
         AppRepo app1 = new AppRepo();
         app1.setUserID(UUID.randomUUID());
         LocalDateTime localDateTime = LocalDateTime.now();
