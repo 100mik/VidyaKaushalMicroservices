@@ -15,6 +15,7 @@ import java.time.ZoneId;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.stubbing.Answer;
+import org.springframework.web.server.ResponseStatusException;
 import org.mockito.AdditionalAnswers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -156,6 +157,23 @@ public class userControllerTest extends TestCase{
         List<UserRepo> response = userController.getAllUsers();
         
         assertEquals(response,userList);
+	}
+	
+	@Test
+	public void testGetAllUsersWhenEmpty()
+	{
+		List<UserRepo> appList= new ArrayList<UserRepo>();
+		when(userStoreRepo.findAll()).thenReturn(appList);	
+		
+		try {
+		userController.getAllUsers();
+		//Exception not thrown
+		fail("ResponseStatusException with HTTP status Bad Request not thrown");
+		}
+		catch(ResponseStatusException e)
+		{
+		//Exception thrown as expected
+		}
 	}
 	
 	@Test
