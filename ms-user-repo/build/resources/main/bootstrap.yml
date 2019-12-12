@@ -1,0 +1,15 @@
+spring:
+  cloud:
+     config:
+        discovery:
+           enabled: true
+           serviceId: ms-config-server
+        #uri: http://ms-config-server/
+  application:
+     name: web-eureka-client
+eureka:
+  instance:
+    preferIpAddress: true
+
+     
+#-Dserver.port=8180 -Deureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/

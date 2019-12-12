@@ -1,0 +1,29 @@
+server:
+  port: 9191
+spring:
+  cloud:
+     config:
+        uri: http://localhost:9999/ 
+  application:
+     name: ms-user-repo
+  profiles: development
+  ## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+  datasource:
+#    url: jdbc:postgresql://db:5432/postgres
+    #username: postgres
+    #password: asecurepassword
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 5
+
+    # The SQL dialect makes Hibernate generate better SQL for the chosen database
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        # Hibernate ddl auto (create, create-drop, validate, update)
+    hibernate:
+      ddl-auto: update
+      show-sql: false
+      
+      ########TO DO -> SC
