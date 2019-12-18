@@ -3,3 +3,4 @@
 !graddle-wrapper.jar
 .gradle
 /build/
+/.metadata/

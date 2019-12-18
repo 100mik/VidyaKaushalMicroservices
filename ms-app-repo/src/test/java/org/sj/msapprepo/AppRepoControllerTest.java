@@ -1,6 +1,4 @@
 package org.sj.msapprepo;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import java.util.UUID;
@@ -13,6 +11,7 @@ import java.time.ZoneId;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.AdditionalAnswers;
+import org.mockito.Mockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -32,7 +31,6 @@ public class AppRepoControllerTest extends TestCase{
 	
 	@Mock
 	AppRepoRepository appRepoRepository;
-	
 	
 	
 	public AppRepoControllerTest()
@@ -64,7 +62,7 @@ public class AppRepoControllerTest extends TestCase{
        AppRepo response = appController.addApp(app1);
        
        //Test
-       assertThat(response.equals(app1));        
+       assertEquals(response,app1);        
 	}
 	
 	@Test
@@ -120,7 +118,7 @@ public class AppRepoControllerTest extends TestCase{
         
         AppRepo response = appController.getApp(app1.getUserID(), app1.getSchemeID());
         
-        assertThat(response.equals(app1));
+        assertEquals(response,app1);
 	}
 	
 	@Test
@@ -184,7 +182,7 @@ public class AppRepoControllerTest extends TestCase{
         
         List<AppRepo> response = appController.getAllApp();
         
-        assertThat(response.equals(appList));
+        assertEquals(response,appList);
 	}
 	
 	@Test
@@ -203,8 +201,6 @@ public class AppRepoControllerTest extends TestCase{
 		{
 			//Exception thrown as expected
 		}
-		
-		
 	}
 	
 	@Test
@@ -232,7 +228,7 @@ public class AppRepoControllerTest extends TestCase{
         app1.setUserID(newUUID);
         app1.setSchemeID(newSchemeId);
         
-        assertThat(response.equals(app1));
+        assertEquals(response, app1);
 	}
 	
 	@Test

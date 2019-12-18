@@ -68,7 +68,7 @@ public class FileStoreControllerTest extends TestCase{
 		UUID returnId = fileStoreController.storeFile(file);
 		
 		//Assertions
-		assertThat(returnId.equals(file.getId()));
+		assertEquals(returnId, file.getId());
 	}
 	
 	@Test
@@ -100,17 +100,18 @@ public class FileStoreControllerTest extends TestCase{
 				 new Answer<Optional<FileStore>>() {
 			         public Optional<FileStore> answer(InvocationOnMock invocation) {
 			             Object[] args =  invocation.getArguments();
+			             System.out.println(String.valueOf(args[0]));
 			             return args[0].equals(file.getId())?Optional.ofNullable(file):Optional.ofNullable(file2);
 			         }
 			 });
 		
 		//Call function being tested
 		FileStore response = fileStoreController.getFile(file.getId());
-		FileStore response2 = fileStoreController.getFile(file.getId());
-		
+		FileStore response2 = fileStoreController.getFile(file2.getId());
+				
 		//Assertions
-		assertThat(response.equals(file));
-		assertThat(response2.equals(file2));
+		assertEquals(response,file);
+		assertEquals(response2,file2);
 	}
 	
 	@Test
@@ -157,7 +158,7 @@ public class FileStoreControllerTest extends TestCase{
 		HttpStatus response = fileStoreController.updateFile(file.getId());
 		
 		//Assertions
-		assertThat(response.equals(HttpStatus.OK));
+		assertEquals(response, HttpStatus.OK);
 	}
 	
 	@Test

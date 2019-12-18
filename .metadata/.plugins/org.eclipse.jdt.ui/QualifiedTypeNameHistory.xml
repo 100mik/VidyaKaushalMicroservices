@@ -3,7 +3,6 @@
 <fullyQualifiedTypeName name="org.sj.msapprepo.Controller"/>
 <fullyQualifiedTypeName name="org.sj.msapprepo.AppRepoRepository"/>
 <fullyQualifiedTypeName name="org.sj.msapprepo.AppRepo"/>
-<fullyQualifiedTypeName name="java.util.UUID"/>
 <fullyQualifiedTypeName name="org.sj.msapprepo.AppRepoIdentity"/>
 <fullyQualifiedTypeName name="org.mockito.AdditionalAnswers"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
@@ -22,6 +21,26 @@
 <fullyQualifiedTypeName name="org.mockito.MockitoAnnotations"/>
 <fullyQualifiedTypeName name="org.apache.el.stream.Optional"/>
 <fullyQualifiedTypeName name="com.google.common.base.Supplier"/>
-<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.sj.msfilemgmnt.model.FileStore"/>
+<fullyQualifiedTypeName name="org.sj.msfilemgmnt.ResourceNotFoundException"/>
+<fullyQualifiedTypeName name="org.sj.msfilemgmnt.FileStoreRepo"/>
+<fullyQualifiedTypeName name="javax.xml.bind.DatatypeConverter"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="org.mockito.Answers"/>
+<fullyQualifiedTypeName name="org.mockito.stubbing.Answer"/>
+<fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+<fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="java.util.UUID"/>
+<fullyQualifiedTypeName name="com.validationtest.validationtest.UserRepo"/>
+<fullyQualifiedTypeName name="lombok.Getter"/>
+<fullyQualifiedTypeName name="lombok.Setter"/>
+<fullyQualifiedTypeName name="lombok.Data"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
 </qualifiedTypeNameHistroy>
