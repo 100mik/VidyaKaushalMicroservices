@@ -1,0 +1,18 @@
+{
+	"title":"schemas",
+	"anyOf" : [{"$ref":"#/definitions/user"}],
+	"definitions":{
+	"user":{
+		"type" : "object",
+		"additionalProperties" : false,
+		"properties":{
+			"name":{"type":"string","pattern":"^[a-zA-Z ]*$", "minLength":2},
+			"email":{"type":"string","pattern":"^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$"},
+			"phone":{"type":"string","minLength":10, "pattern":"^[0-9]*$"},
+			"test":{"anyOf":[{"$ref":"#/definitions/test1"},{"$ref":"#/definitions/test2"}]}
+		}
+	},
+	"test1":{"type":"string","pattern":"^S.+E$"},
+	"test2":{"type":"string","pattern":"^A.+R$"}
+	}
+}
