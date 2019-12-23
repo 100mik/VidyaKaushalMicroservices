@@ -13,5 +13,5 @@ import lombok.Data;
 @Data
 public class ValidationErrorMessage implements Serializable {
 	boolean status;
-	Set<ValidationMessage> errors; // = new HashSet<String>();
+	Set<String> errors = new HashSet<String>();
 }

@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.schema.*;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class TestController {
 	
@@ -56,8 +57,8 @@ public class TestController {
 		if(!errors.isEmpty())
 		{
 			res.setStatus(false);
-			res.setErrors(errors);
-/*			for(ValidationMessage err : errors)
+			
+			for(ValidationMessage err : errors)
 			{
 				switch(err.getPath())
 				{
@@ -67,7 +68,7 @@ public class TestController {
 					case "$.name" : res.errors.add("Names can only have spaces and alphabets"); break;
 					default:  res.errors.add("Invalid form data");
 				}
-			}*/
+			}
 			
 			return res;
 		}
